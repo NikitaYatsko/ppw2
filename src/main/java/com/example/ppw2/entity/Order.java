@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "orders")
+@Table(name = "orders", schema = "ppw2")
 @Entity
 
 public class Order {
@@ -23,8 +23,10 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(length = 50, nullable = false)
+    @NotNull(message = "Имя товара не может быть пустым")
     private String productName;
-    @Column(nullable = false)
+    @Column()
+    @NotNull(message = "Количество товара должно быть хотя-бы 1")
     private Integer quantity;
     @CreationTimestamp
     private LocalDate orderDate;

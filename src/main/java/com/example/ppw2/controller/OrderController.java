@@ -1,9 +1,7 @@
 package com.example.ppw2.controller;
 
 import com.example.ppw2.entity.Order;
-import com.example.ppw2.repository.OrderRepository;
 import com.example.ppw2.service.OrderService;
-import com.example.ppw2.service.OrderServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +9,7 @@ import java.util.List;
 
 @RequestMapping("/orders")
 @AllArgsConstructor
+
 @RestController
 public class OrderController {
     private OrderService orderService;

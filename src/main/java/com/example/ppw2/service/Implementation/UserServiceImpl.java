@@ -1,8 +1,9 @@
-package com.example.ppw2.service;
+package com.example.ppw2.service.Implementation;
 
 import com.example.ppw2.entity.User;
 import com.example.ppw2.exception.UserNotFoundException;
 import com.example.ppw2.repository.UserRepository;
+import com.example.ppw2.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

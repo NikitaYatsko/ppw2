@@ -1,9 +1,10 @@
-package com.example.ppw2.service;
+package com.example.ppw2.service.Implementation;
 
 import com.example.ppw2.entity.Order;
 import com.example.ppw2.exception.OrderNotFoundException;
 import com.example.ppw2.repository.OrderRepository;
 import com.example.ppw2.repository.UserRepository;
+import com.example.ppw2.service.OrderService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,6 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     private OrderRepository orderRepository;
-    private UserRepository userRepository;
-
 
     @Override
     public List<Order> getAllOrders() {
@@ -49,6 +48,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteOrder(Integer id) {
-        orderRepository.deleteById(id);
+        var orderToDelete = orderRepository.findById(id).orElseThrow(
+                () -> new OrderNotFoundException("Order not found"));
+        orderRepository.deleteById(orderToDelete.getId());
     }
 }

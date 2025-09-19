@@ -1,7 +1,7 @@
 package com.example.ppw2.controller;
 
 import com.example.ppw2.entity.User;
-import com.example.ppw2.service.UserServiceImpl;
+import com.example.ppw2.service.Implementation.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -71,8 +71,7 @@ public class HelloController {
         return userService.updateUser(id, user);
     }
 
-    @DeleteMapping("/users/{id}")
-    @Operation(summary = "Удалить пользователя", description = "Удаляет пользователя по ID")
+    @DeleteMapping("/users/{id}")    @Operation(summary = "Удалить пользователя", description = "Удаляет пользователя по ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Пользователь успешно удален"),
             @ApiResponse(responseCode = "404", description = "Пользователь не найден")
