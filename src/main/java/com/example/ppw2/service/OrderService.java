@@ -1,17 +1,18 @@
 package com.example.ppw2.service;
 
 import com.example.ppw2.entity.Order;
+import com.example.ppw2.entity.dto.OrderResponseDTO;
 
 import java.util.List;
 
 public interface OrderService {
-    List<Order> getAllOrders();
+    List<OrderResponseDTO> getAllOrders();
 
-    Order getOrderById(Integer id);
+    OrderResponseDTO getOrderById(Integer id);
 
-    Order updateOrder(Order order, Integer id);
+    OrderResponseDTO updateOrder(Order order, Integer id);
 
-    Order createOrder(Order order);
+    OrderResponseDTO createOrder(Order order);
 
     void deleteOrder(Integer id);
 

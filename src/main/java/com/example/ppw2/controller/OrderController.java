@@ -1,12 +1,17 @@
 package com.example.ppw2.controller;
 
 import com.example.ppw2.entity.Order;
+import com.example.ppw2.entity.dto.OrderResponseDTO;
 import com.example.ppw2.service.OrderService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RequestMapping("/orders")
 @AllArgsConstructor
 
@@ -15,28 +20,37 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping
-    public List<Order> getOrders() {
-        return orderService.getAllOrders();
+    public ResponseEntity<List<OrderResponseDTO>> getOrders() {
+        log.debug("REST request to get all Orders");
+        var response = orderService.getAllOrders();
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("/{id}")
-    public Order getOrder(@PathVariable Integer id) {
-        return orderService.getOrderById(id);
+    public ResponseEntity<OrderResponseDTO> getOrder(@PathVariable Integer id) {
+        log.info("Get Order with id {}", id);
+        var response = orderService.getOrderById(id);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/create")
-    public Order createOrder(@RequestBody Order order) {
-        return orderService.createOrder(order);
+    public ResponseEntity<OrderResponseDTO> createOrder(@RequestBody Order order) {
+        log.info("creating new order {}", order);
+        var response = orderService.createOrder(order);
+        return ResponseEntity.ok().body(response);
     }
 
     @PutMapping("/{id}")
-    public Order updateOrder(@RequestBody Order order, @PathVariable Integer id) {
-        return orderService.updateOrder(order, id);
+    public ResponseEntity<OrderResponseDTO> updateOrder(@RequestBody Order order, @PathVariable Integer id) {
+        var response = orderService.updateOrder(order, id);
+        return ResponseEntity.ok().body(response);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteOrder(@PathVariable Integer id) {
+        log.info("deleting order with id {}", id);
         orderService.deleteOrder(id);
+        return ResponseEntity.noContent().build();
     }
 
 

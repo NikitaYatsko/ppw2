@@ -1,5 +1,6 @@
 package com.example.ppw2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @Data
 @Table(name = "users", schema = "ppw2")
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
     @Id
@@ -34,7 +36,6 @@ public class User {
     @Column(unique = true)
     private String email;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<Order> orders = new ArrayList<>();
 
 }
