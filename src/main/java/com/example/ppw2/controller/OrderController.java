@@ -5,7 +5,6 @@ import com.example.ppw2.entity.dto.OrderResponseDTO;
 import com.example.ppw2.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
 
-    // ----------------- DTO Mapping -----------------
+
     private OrderResponseDTO mapToDTO(Order order) {
         return new OrderResponseDTO(
                 order.getId(),
@@ -37,7 +37,6 @@ public class OrderServiceImpl implements OrderService {
         );
     }
 
-    // ----------------- GET ALL -----------------
     @Override
     public List<OrderResponseDTO> getAllOrders() {
         return orderRepository.findAll()
@@ -46,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
     }
 
-    // ----------------- GET BY ID -----------------
+
     @Override
     public OrderResponseDTO getOrderById(Integer id) {
         Order order = orderRepository.findById(id)
@@ -54,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
         return mapToDTO(order);
     }
 
-    // ----------------- CREATE -----------------
+
     @Override
     @Transactional
     public OrderResponseDTO createOrder(Order order) {
@@ -71,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
         return mapToDTO(savedOrder);
     }
 
-    // ----------------- UPDATE -----------------
+
     @Override
     @Transactional
     public OrderResponseDTO updateOrder(Order orderData, Integer orderId) {
@@ -84,7 +83,6 @@ public class OrderServiceImpl implements OrderService {
         return mapToDTO(updatedOrder);
     }
 
-    // ----------------- DELETE -----------------
     @Override
     @Transactional
     public void deleteOrder(Integer id) {

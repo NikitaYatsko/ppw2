@@ -19,13 +19,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductById(Integer id) {
-        log.info("getting product by id {}", id);
         return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("product not found"));
     }
 
     @Override
     public List<Product> getAllProducts() {
-        log.info("getting all products");
         return productRepository.findAll();
     }
 }

@@ -4,6 +4,8 @@ import com.example.ppw2.entity.Product;
 import com.example.ppw2.service.ProductService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,16 +20,18 @@ import java.util.Optional;
 @RequestMapping("/products")
 public class ProductController {
 
-  private final ProductService productService;
+    private final ProductService productService;
+
     @GetMapping("{id}")
-    public Optional<Product> getProductById(@PathVariable Integer id) {
+    public ResponseEntity<Optional<Product>> getProductById(@PathVariable Integer id) {
         log.info("get product by id {}", id);
-        return Optional.ofNullable(productService.getProductById(id));
+        return ResponseEntity.ok(Optional.ofNullable(productService.getProductById(id)));
     }
+
     @GetMapping
-    public List<Product> getAllProducts() {
+    public ResponseEntity<List<Product>> getAllProducts() {
         log.info("get all products");
-        return productService.getAllProducts();
+        return ResponseEntity.ok().body(productService.getAllProducts());
     }
 
 }
